@@ -1,33 +1,32 @@
 import React, { useState, useEffect, useCallback } from 'react';
 
-import { Card } from 'components';
+import { Card, Pagination } from 'components';
 import { ContentBody, ContentCardsMain, Redirect, ContentInput, Input, ContentFilters, ContentNotFound } from './styled';
 
 type BodyProps = {
 	data?: any;
-	setPagination?: any;
+	setPaginationPrev?: any;
+	setPaginationAfter?: any;
 };
 
-function Body({ data = [], setPagination }: BodyProps): JSX.Element {
-	console.log('data Body', data);
+function Body({ data = [], setPaginationPrev, setPaginationAfter }: BodyProps): JSX.Element {
 	const results = data?.results;
 	const [searchTerm, setSearchTerm] = useState<string>('');
 	const [searchResults, setSearchResults] = useState<Array<any>>([]);
 	const [typeFilter, setTypeFilter] = useState<string>('');
-
 	const handleChange = (e: any) => {
 		setSearchTerm(e.target.value);
 	};
 
 	const getFilterOrderLess = useCallback(async () => {
 		setTypeFilter('less');
-		const resultsData: any = await results.sort((a: any, b: any) => a.vote_average - b.vote_average);
+		const resultsData: any = await results?.sort((a: any, b: any) => a.vote_average - b.vote_average);
 		setSearchResults(resultsData);
 	}, [results]);
 
 	const getFilterOrderHigher = useCallback(async () => {
 		setTypeFilter('higher');
-		const resultsData: any = await results.sort((a: any, b: any) => b.vote_average - a.vote_average);
+		const resultsData: any = await results?.sort((a: any, b: any) => b.vote_average - a.vote_average);
 		setSearchResults(resultsData);
 	}, [results]);
 
@@ -45,7 +44,6 @@ function Body({ data = [], setPagination }: BodyProps): JSX.Element {
 		}
 		async function getData() {
 			const resultsData: any = await results?.filter((item: any) => item.title.toLowerCase().includes(searchTerm));
-			console.log('resultsData', resultsData);
 			setSearchResults(resultsData);
 		}
 		getData();
@@ -60,7 +58,14 @@ function Body({ data = [], setPagination }: BodyProps): JSX.Element {
 				<Redirect onClick={() => getFilterOrderHigher()}>Mayor a menor</Redirect>
 				<Redirect onClick={() => getFilterOrderLess()}>Menor a mayor</Redirect>
 			</ContentFilters>
-
+			{searchResults?.length !== 0 && (
+				<Pagination
+					setPaginationAfter={setPaginationAfter}
+					setPaginationPrev={setPaginationPrev}
+					paginationInit={data?.page}
+					paginationPrev={data?.total_pages}
+				/>
+			)}
 			<ContentCardsMain>
 				{searchResults?.length ? (
 					searchResults?.map((result: any, index: number) => <Card key={index} cardItem={result} />)
@@ -70,7 +75,14 @@ function Body({ data = [], setPagination }: BodyProps): JSX.Element {
 					</ContentNotFound>
 				)}
 			</ContentCardsMain>
-			<button onClick={() => setPagination(data.page + 1)}>Ver mas</button>
+			{searchResults?.length !== 0 && (
+				<Pagination
+					setPaginationAfter={setPaginationAfter}
+					setPaginationPrev={setPaginationPrev}
+					paginationInit={data?.page}
+					paginationPrev={data?.total_pages}
+				/>
+			)}
 		</ContentBody>
 	);
 }

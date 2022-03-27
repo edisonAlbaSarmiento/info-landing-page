@@ -8,12 +8,8 @@ import {
 	ConetentCardChildRight,
 	ConetentCardChildLeft,
 	ContentHeadCard,
-	ContentInfoCard,
 	ContentFooterCard,
-	ContentScrrollImages,
-	Image,
 	Title,
-	Redirect,
 } from './styled';
 
 type CardProps = {
@@ -30,18 +26,6 @@ function Card({ cardItem = {}, selectItem }: CardProps): JSX.Element {
 					<Title>{title}</Title>
 					<Subtitle>Titulo original: {original_title}</Subtitle>
 				</ContentHeadCard>
-				{/* <ContentInfoCard>
-					<div>Casting:</div>
-					<ContentScrrollImages>
-						<Image src='https://image.tmdb.org/t/p/w185_and_h278_bestv2/hpohdtx5ABjZs1BIyYUzwq9CYxJ.jpg' alt='Vercel Logo' />
-						<Image src='https://image.tmdb.org/t/p/w185_and_h278_bestv2/hpohdtx5ABjZs1BIyYUzwq9CYxJ.jpg' alt='Vercel Logo' />
-						<Image src='https://image.tmdb.org/t/p/w185_and_h278_bestv2/hpohdtx5ABjZs1BIyYUzwq9CYxJ.jpg' alt='Vercel Logo' />
-						<Image src='https://image.tmdb.org/t/p/w185_and_h278_bestv2/hpohdtx5ABjZs1BIyYUzwq9CYxJ.jpg' alt='Vercel Logo' />
-						<Image src='/vercel.svg' alt='Vercel Logo' />
-						<Image src='/vercel.svg' alt='Vercel Logo' />
-						<Image src='/vercel.svg' alt='Vercel Logo' />
-					</ContentScrrollImages>
-				</ContentInfoCard> */}
 				<ContentFooterCard>
 					<Description>Puntuacion: {vote_average}</Description>
 					<Description>Idioma: {original_language}</Description>
@@ -51,7 +35,9 @@ function Card({ cardItem = {}, selectItem }: CardProps): JSX.Element {
 					<a className='redirect'>Ver mas</a>
 				</Link>
 			</ConetentCardChildRight>
-			<ConetentCardChildLeft backgroundImage={`https://image.tmdb.org/t/p/w300/${backdrop_path}`} />
+			<ConetentCardChildLeft
+				backgroundImage={backdrop_path ? `https://image.tmdb.org/t/p/w300/${backdrop_path}` : '/img/houmLogo.svg'}
+			/>
 		</ConetentCardMain>
 	);
 }

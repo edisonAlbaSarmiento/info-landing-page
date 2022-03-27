@@ -45,7 +45,6 @@ const Redirect = styled.a`
 	:hover {
 		background-color: white;
 		color: ${({ theme }) => theme.colors.colorMain.title};
-
 		transform: translateX(4px);
 	}
 `;

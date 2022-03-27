@@ -62,10 +62,6 @@ const ContentHeadCard = styled.div`
 	word-wrap: break-word;
 `;
 
-const ContentInfoCard = styled.div`
-	margin: 0 0 5%;
-`;
-
 const ContentFooterCard = styled.div`
 	display: flex;
 	justify-content: space-between;
@@ -73,35 +69,6 @@ const ContentFooterCard = styled.div`
 	margin: 2% 0 0;
 `;
 
-const ContentScrrollImages = styled.div`
-	width: 80%;
-	overflow-x: auto;
-	display: flex;
-	flex-direction: row;
-	justify-content: space-between;
-	white-space: nowrap;
-	margin: 5% 0;
-	height: 80px;
-`;
-
-const Image = styled.img`
-	width: 60px;
-	height: 60px;
-	background: red;
-	margin: 2%;
-	border-radius: 30px;
-`;
-
 const Title = styled(TitleMain)``;
 
-export {
-	ConetentCardMain,
-	ConetentCardChildRight,
-	ConetentCardChildLeft,
-	ContentHeadCard,
-	ContentInfoCard,
-	ContentFooterCard,
-	ContentScrrollImages,
-	Image,
-	Title,
-};
+export { ConetentCardMain, ConetentCardChildRight, ConetentCardChildLeft, ContentHeadCard, ContentFooterCard, Title };

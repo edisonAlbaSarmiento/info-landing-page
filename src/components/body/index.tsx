@@ -1,41 +1,77 @@
-import React from 'react';
-import styles from '../../../styles/Home.module.css';
+import React, { useState, useEffect, useCallback } from 'react';
 
-function Body(): JSX.Element {
+import { Card } from 'components';
+import { ContentBody, ContentCardsMain, Redirect, ContentInput, Input, ContentFilters, ContentNotFound } from './styled';
+
+type BodyProps = {
+	data?: any;
+	setPagination?: any;
+};
+
+function Body({ data = [], setPagination }: BodyProps): JSX.Element {
+	console.log('data Body', data);
+	const results = data?.results;
+	const [searchTerm, setSearchTerm] = useState<string>('');
+	const [searchResults, setSearchResults] = useState<Array<any>>([]);
+	const [typeFilter, setTypeFilter] = useState<string>('');
+
+	const handleChange = (e: any) => {
+		setSearchTerm(e.target.value);
+	};
+
+	const getFilterOrderLess = useCallback(async () => {
+		setTypeFilter('less');
+		const resultsData: any = await results.sort((a: any, b: any) => a.vote_average - b.vote_average);
+		setSearchResults(resultsData);
+	}, [results]);
+
+	const getFilterOrderHigher = useCallback(async () => {
+		setTypeFilter('higher');
+		const resultsData: any = await results.sort((a: any, b: any) => b.vote_average - a.vote_average);
+		setSearchResults(resultsData);
+	}, [results]);
+
+	useEffect(() => {
+		switch (typeFilter) {
+			case 'less':
+				getFilterOrderLess();
+				break;
+			case 'higher':
+				getFilterOrderHigher();
+				break;
+			default:
+				setSearchResults(results);
+				break;
+		}
+		async function getData() {
+			const resultsData: any = await results?.filter((item: any) => item.title.toLowerCase().includes(searchTerm));
+			console.log('resultsData', resultsData);
+			setSearchResults(resultsData);
+		}
+		getData();
+	}, [getFilterOrderHigher, getFilterOrderLess, results, searchTerm, typeFilter]);
+
 	return (
-		<main className={styles.main}>
-			<h1 className={styles.title}>
-				Welcome to <a href='https://nextjs.org'>Next.js!</a>
-			</h1>
+		<ContentBody>
+			<ContentFilters>
+				<ContentInput>
+					<Input type='text' placeholder='Buscar' value={searchTerm} onChange={handleChange} />
+				</ContentInput>
+				<Redirect onClick={() => getFilterOrderHigher()}>Mayor a menor</Redirect>
+				<Redirect onClick={() => getFilterOrderLess()}>Menor a mayor</Redirect>
+			</ContentFilters>
 
-			<p className={styles.description}>
-				Get started by editing <code className={styles.code}>pages/index.tsx</code>
-			</p>
-
-			<div className={styles.grid}>
-				<a href='https://nextjs.org/docs' className={styles.card}>
-					<h2>Documentation &rarr;</h2>
-					<p>Find in-depth information about Next.js features and API.</p>
-				</a>
-
-				<a href='https://nextjs.org/learn' className={styles.card}>
-					<h2>Learn &rarr;</h2>
-					<p>Learn about Next.js in an interactive course with quizzes!</p>
-				</a>
-
-				<a href='https://github.com/vercel/next.js/tree/canary/examples' className={styles.card}>
-					<h2>Examples &rarr;</h2>
-					<p>Discover and deploy boilerplate example Next.js projects.</p>
-				</a>
-
-				<a
-					href='https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app'
-					className={styles.card}>
-					<h2>Deploy &rarr;</h2>
-					<p>Instantly deploy your Next.js site to a public URL with Vercel.</p>
-				</a>
-			</div>
-		</main>
+			<ContentCardsMain>
+				{searchResults?.length ? (
+					searchResults?.map((result: any, index: number) => <Card key={index} cardItem={result} />)
+				) : (
+					<ContentNotFound>
+						<h1>Sin resultados</h1>
+					</ContentNotFound>
+				)}
+			</ContentCardsMain>
+			<button onClick={() => setPagination(data.page + 1)}>Ver mas</button>
+		</ContentBody>
 	);
 }
 

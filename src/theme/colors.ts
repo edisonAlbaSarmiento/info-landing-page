@@ -2,7 +2,8 @@ import 'styled-components';
 
 const colors = {
 	colorMain: {
-		hue: '##ff5000',
+		title: '#424242',
+		hue: '#ff5000',
 		light: '#273339',
 		tint: '#626262',
 		shade: '#0d0d0d',
@@ -11,7 +12,9 @@ const colors = {
 		iconColor: '#ff442b',
 		subTitle: '#263238',
 		description: '#3a4349',
+		subDescription: '#607D8B',
 		totalWhite: '#fff8f7',
+		salmon: '#fff3f2',
 	},
 	scalesGrey: {
 		gris_90MB: '#4F4F4F',

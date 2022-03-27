@@ -14,8 +14,7 @@ const Content = styled.div`
 	align-items: center;
 	justify-content: center;
 	${media.greaterThan('mobile')`
-		width: 60%;
-        background: red;
+		width: 100%;
 	`}
 `;
 

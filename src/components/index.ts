@@ -1,6 +1,7 @@
 import Body from './body';
-import Head from './head';
+import HeadMain from './head';
 import Footer from './footer';
 import Card from './card';
+import DetailComponent from './detail-component';
 
-export { Head, Body, Footer, Card };
+export { HeadMain, Body, Footer, Card, DetailComponent };

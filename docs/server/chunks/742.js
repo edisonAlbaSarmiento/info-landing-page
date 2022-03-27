@@ -422,7 +422,7 @@ const Title = external_styled_components_default()(TitleMain)``;
 
 
 
-function Card({ cardItem ={} , selectItem  }) {
+function Card({ cardItem ={}  }) {
     const { id , original_title , title , backdrop_path , vote_average , release_date , original_language  } = cardItem;
     return /*#__PURE__*/ (0,jsx_runtime_.jsxs)(ConetentCardMain, {
         children: [

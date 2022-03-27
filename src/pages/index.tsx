@@ -1,4 +1,5 @@
 import type { NextPage } from 'next';
+import Head from 'next/Head';
 import { useEffect, useState } from 'react';
 import { GetDataMovies } from 'hooks';
 import { HeadMain, Body, Footer } from 'components';
@@ -26,6 +27,11 @@ const Home: NextPage = () => {
 	};
 	return (
 		<div>
+			<Head>
+				<title>Movies</title>
+				<meta name='description' content='Mostrar peliculas' />
+				<link rel='icon' href='/favicon.ico' />
+			</Head>
 			<HeadMain />
 			<Body data={dataMain} setPaginationPrev={paginationPrev} setPaginationAfter={paginationAfter} />
 			<Footer />

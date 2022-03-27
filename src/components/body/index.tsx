@@ -43,7 +43,7 @@ function Body({ data = [], setPaginationPrev, setPaginationAfter }: BodyProps): 
 				break;
 		}
 		async function getData() {
-			const resultsData: any = await results?.filter((item: any) => item.title.toLowerCase().includes(searchTerm));
+			const resultsData: any = await results?.filter((item: any) => item.title.toUpperCase().includes(searchTerm.toUpperCase()));
 			setSearchResults(resultsData);
 		}
 		getData();

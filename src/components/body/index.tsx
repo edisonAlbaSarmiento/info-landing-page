@@ -55,8 +55,8 @@ function Body({ data = [], setPaginationPrev, setPaginationAfter }: BodyProps): 
 				<ContentInput>
 					<Input type='text' placeholder='Buscar' value={searchTerm} onChange={handleChange} />
 				</ContentInput>
-				<Redirect onClick={() => getFilterOrderHigher()}>Mayor a menor</Redirect>
-				<Redirect onClick={() => getFilterOrderLess()}>Menor a mayor</Redirect>
+				<Redirect onClick={() => getFilterOrderHigher()}>Mayor calificación</Redirect>
+				<Redirect onClick={() => getFilterOrderLess()}>Menor calificación</Redirect>
 			</ContentFilters>
 			{searchResults?.length !== 0 && (
 				<Pagination

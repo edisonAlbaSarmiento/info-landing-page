@@ -1,25 +1,18 @@
 import React from 'react';
 import Link from 'next/link';
 
-import { Card } from 'components';
+import { TotalCardDetail } from 'components';
 import { ContentBody, ContentCardsMain } from './styled';
 
 type DetailComponentProps = {
 	data?: any;
-	setPagination?: any;
 };
 
-function DetailComponent({ data = [], setPagination }: DetailComponentProps): JSX.Element {
-	console.log('data Body', data);
-	const results = data?.results;
-
+function DetailComponent({ data = [] }: DetailComponentProps): JSX.Element {
+	const resultsDetail = data;
 	return (
 		<ContentBody>
-			<ContentCardsMain>
-				{results?.map((result: any, index: number) => (
-					<Card key={index} cardItem={result} />
-				))}
-			</ContentCardsMain>
+			<ContentCardsMain>{resultsDetail && <TotalCardDetail detailData={resultsDetail} />}</ContentCardsMain>
 			<Link href={`/`}>
 				<a>Volver</a>
 			</Link>

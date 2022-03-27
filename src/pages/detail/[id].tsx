@@ -2,7 +2,7 @@ import React from 'react';
 import type { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import { GetDataMoviesById } from 'hooks';
-import { HeadMain, DetailComponent } from 'components';
+import { HeadMain, DetailComponent, Footer } from 'components';
 
 const Detail: NextPage = () => {
 	const { query } = useRouter();
@@ -15,6 +15,7 @@ const Detail: NextPage = () => {
 		<div>
 			<HeadMain />
 			<DetailComponent data={databyID} />
+			<Footer />
 		</div>
 	);
 };

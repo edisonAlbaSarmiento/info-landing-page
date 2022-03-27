@@ -6,11 +6,8 @@ import { HeadMain, DetailComponent, Footer } from 'components';
 
 const Detail: NextPage = () => {
 	const { query } = useRouter();
-	console.log('query', query.id);
 	const id = query.id;
 	const databyID = GetDataMoviesById(id, 'es-ES');
-	console.log(databyID);
-
 	return (
 		<div>
 			<HeadMain />

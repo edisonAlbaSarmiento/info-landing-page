@@ -2,8 +2,8 @@
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
   "/_app": "pages/_app.js",
-  "/detail/[id]": "pages/detail/[id].html",
   "/api/hello": "pages/api/hello.js",
+  "/detail/[id]": "pages/detail/[id].html",
   "/": "pages/index.html",
   "/404": "pages/404.html"
 }

@@ -181,7 +181,7 @@ function Body({ data =[] , setPaginationPrev , setPaginationAfter  }) {
                 break;
         }
         async function getData() {
-            const resultsData = await (results === null || results === void 0 ? void 0 : results.filter((item)=>item.title.toLowerCase().includes(searchTerm)
+            const resultsData = await (results === null || results === void 0 ? void 0 : results.filter((item)=>item.title.toUpperCase().includes(searchTerm.toUpperCase())
             ));
             setSearchResults(resultsData);
         }

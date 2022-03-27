@@ -1,10 +1,9 @@
-import type { NextPage } from 'next';
 import Head from 'next/Head';
 import { useEffect, useState } from 'react';
 import { GetDataMovies } from 'hooks';
 import { HeadMain, Body, Footer } from 'components';
 
-const Home: NextPage = () => {
+const Home = (): JSX.Element => {
 	const [changePagination, SetPagination] = useState<number>(1);
 	const [dataMain, SetDataMain] = useState<any>(null);
 	const data = GetDataMovies(changePagination, 'es-ES');

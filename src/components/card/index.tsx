@@ -14,10 +14,9 @@ import {
 
 type CardProps = {
 	cardItem?: any;
-	selectItem?: () => number | undefined | undefined;
 };
 
-function Card({ cardItem = {}, selectItem }: CardProps): JSX.Element {
+function Card({ cardItem = {} }: CardProps): JSX.Element {
 	const { id, original_title, title, backdrop_path, vote_average, release_date, original_language } = cardItem;
 	return (
 		<ConetentCardMain>

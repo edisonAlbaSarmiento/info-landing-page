@@ -3,7 +3,7 @@
   "/_document": "pages/_document.js",
   "/_app": "pages/_app.js",
   "/": "pages/index.html",
-  "/detail/[id]": "pages/detail/[id].html",
   "/api/hello": "pages/api/hello.js",
+  "/detail/[id]": "pages/detail/[id].html",
   "/404": "pages/404.html"
 }
